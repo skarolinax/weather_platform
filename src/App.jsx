@@ -4,6 +4,8 @@ import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import CurrentWeather from './components/CurrentWeather'
 import WeeklyForecast from './components/WeeklyForecast'
+import DailyForecast from './components/DailyForecast'
+import HourlyForecast from './components/HourlyForecast'
 
 function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
@@ -14,24 +16,30 @@ function App() {
   const [humidity, setHumidity] = useState(null);
   const [windSpeed, setWindSpeed] = useState(null);
   const [feelsLike, setFeelsLike] = useState(null);
+  const [dailyForecast, setDailyForecast] = useState([]);
+  const [weeklyForecast, setWeeklyForecast] = useState([]);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
 
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
     const fetchWeather = async () => {
       try {
         const response = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,apparent_temperature,precipitation,relativehumidity_2m,windspeed_10m");
+          "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=,temperature_2m,weather_code&current=apparent_temperature,precipitation,relative_humidity_2m,wind_speed_10m,temperature_2m,weather_code");
 
         const data = await response.json();
 
         setCurrentTemp(data.current.temperature_2m);
         setPrecipitation(data.current.precipitation);
-        setHumidity(data.current.relativehumidity_2m);
-        setWindSpeed(data.current.windspeed_10m);
+        setHumidity(data.current.relative_humidity_2m);
+        setWindSpeed(data.current.wind_speed_10m);
         setFeelsLike(data.current.apparent_temperature);
 
         setCity("Berlin");
         setCountry("Germany"); // How to geolocate country from API?
+
+        setHourlyForecast(data.hourly);
+        setWeeklyForecast(data.daily);
 
         const date = new Date(data.current.time);
         const day = date.toLocaleDateString('en-US', {
@@ -57,13 +65,16 @@ function App() {
       <h1>How is the sky looking today?</h1>
       <SearchBar />
 
-
-      <WeeklyForecast 
+      <DailyForecast   
         precipitation={precipitation} 
         humidity={humidity} 
         windSpeed={windSpeed} 
         feelsLike={feelsLike} 
       />
+
+      <WeeklyForecast weeklyForecast={weeklyForecast} />
+
+      <HourlyForecast hourlyForecast={hourlyForecast} />
 
       <CurrentWeather 
         currentTemp={currentTemp} 

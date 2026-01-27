@@ -6,7 +6,8 @@ function SearchBar() {
   return (
     <>
     
-      <h1>Search</h1>
+      <input type="search" name="" id="" placeholder='Search for a place..' />
+      <button type="submit">Search</button>
       
     </>
   )
