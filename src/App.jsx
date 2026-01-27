@@ -19,6 +19,7 @@ function App() {
   const [dailyForecast, setDailyForecast] = useState([]);
   const [weeklyForecast, setWeeklyForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [weatherCode, setWeatherCode] = useState(null);
 
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
         setHumidity(data.current.relative_humidity_2m);
         setWindSpeed(data.current.wind_speed_10m);
         setFeelsLike(data.current.apparent_temperature);
+        setWeatherCode(data.current.weather_code);
 
         setCity("Berlin");
         setCountry("Germany"); // How to geolocate country from API?
@@ -62,7 +64,9 @@ function App() {
   return (
     <>
       <Header />
+
       <h1>How is the sky looking today?</h1>
+
       <SearchBar />
 
       <DailyForecast   
@@ -81,6 +85,7 @@ function App() {
         city={city} 
         country={country} 
         day={day} 
+        weatherCode={weatherCode}
         />
       
     </>

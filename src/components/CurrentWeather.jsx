@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import '../styles/main.scss'
+import { weatherCodeMap } from '../assets/weatherIcons'
 
-function CurrentWeather({currentTemp, city, country, day}) {
+function CurrentWeather({currentTemp, city, country, day, weatherCode}) {
 
   return (
     <>
@@ -10,6 +11,11 @@ function CurrentWeather({currentTemp, city, country, day}) {
       <p>{currentTemp}°C</p>
       <p>{city}, {country}</p>
       <p>{day}</p>
+       <img 
+          src={weatherCodeMap[weatherCode]} 
+          alt="Weather icon" 
+          className='weather-icon'
+      />
      
     </>
   )

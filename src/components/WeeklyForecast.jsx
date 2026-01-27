@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import '../styles/main.scss'
+import { weatherCodeMap } from '../assets/weatherIcons'
 
 function WeeklyForecast({weeklyForecast}) { 
     if (!weeklyForecast || !weeklyForecast.time) return null; // Load all data first
@@ -14,10 +15,14 @@ function WeeklyForecast({weeklyForecast}) {
                 <p>{dateStr.toLocaleString('en-US', {weekday: 'short'})}</p>
                 <p>Max: {weeklyForecast.temperature_2m_max[index]}°C</p>
                 <p>Min: {weeklyForecast.temperature_2m_min[index]}°C</p>
-                <p>Weather code: {weeklyForecast.weather_code[index]}</p>
+                <img 
+                    src={weatherCodeMap[weeklyForecast.weather_code[index]]} 
+                    alt="Weather icon" 
+                    className='weather-icon'
+                />
             </div>
         );
-        })};
+        })}
 
     </>
   )

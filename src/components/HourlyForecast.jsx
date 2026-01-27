@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import '../styles/main.scss'
+import { weatherCodeMap } from '../assets/weatherIcons';
 
 function HourlyForecast({hourlyForecast}) { 
     if (!hourlyForecast || !hourlyForecast.time) return null;
@@ -11,6 +12,12 @@ function HourlyForecast({hourlyForecast}) {
         const timeStr = new Date(time);
         return (    
             <div key={timeStr}>
+                <img 
+                    src={weatherCodeMap[hourlyForecast.weather_code[index]]} 
+                    alt="Weather icon" 
+                    className='weather-icon'
+
+                />
                 <p>{timeStr.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true })}</p>
                 <p>Temperature: {hourlyForecast.temperature_2m[index]}°C</p>
             </div>
