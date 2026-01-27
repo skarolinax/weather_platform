@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import '../styles/main.scss'
+import { useState } from 'react';
+import '../styles/main.scss';
+import logo from '../assets/images/logo.svg';
 
 function Header() {
 
   return (
     <>
     
-      <h1>Header</h1>
+    <img src={logo} alt="Logo" />
       
     </>
   )

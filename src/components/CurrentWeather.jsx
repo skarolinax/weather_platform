@@ -7,7 +7,7 @@ function CurrentWeather({currentTemp, city, country, day}) {
     <>
     
       <h1>Current Weather</h1>
-      <p>temp {currentTemp}</p>
+      <p>{currentTemp}°C</p>
       <p>{city}, {country}</p>
       <p>{day}</p>
      

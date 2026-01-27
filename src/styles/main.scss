@@ -1,6 +1,14 @@
+@use 'variables' as *;
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    background-color: $neutral-900;
+    font-size: 18px;
+    color: $neutral-200;
+    font-family: Arial, Helvetica, sans-serif;
+}
