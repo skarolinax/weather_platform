@@ -11,7 +11,7 @@ function Header({
     }) {
   return (
     <>
-      <img src={logo} alt="Logo" />
+      <img src={logo} alt="Logo" id="logo-image" onClick={() => window.location.reload()}/>
 
       <div id="dropdown-menu">
         <button className="dropbtn">Units</button>

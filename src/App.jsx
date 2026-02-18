@@ -24,6 +24,8 @@ function App() {
   const [windUnit, setWindUnit] = useState('kmh');  
   const [rainUnit, setRainUnit] = useState('mm');   
 
+  const [cityNotFound, setCityNotFound] = useState(false);
+
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
     const fetchWeather = async () => {
@@ -64,6 +66,15 @@ function App() {
     fetchWeather();
   }, []); 
 
+  // Letting all searches fail cause I don't want to deal with the API and geolcation right now, but I want to show the error message when search is used
+  const handleSearch = (input) => {
+     if (input.trim().length < 3 || !input.trim()) {
+      setCityNotFound(true);
+      return;
+    }
+    setCityNotFound(true);
+};
+
   return (
     <>
       <Header
@@ -73,44 +84,47 @@ function App() {
         setWindUnit={setWindUnit}
         rainUnit={rainUnit}
         setRainUnit={setRainUnit}
-
       />
-
 
       <h1>How is the sky looking today?</h1>
 
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
 
-      <DailyForecast   
-        precipitation={precipitation} 
-        humidity={humidity} 
-        windSpeed={windSpeed} 
-        feelsLike={feelsLike} 
-        units={{temp: tempUnit, wind: windUnit, rain: rainUnit}}
+      {cityNotFound ? (
+        <div className="not-found">
+          <h2>No search result found.</h2>
+        </div>
+      ) : (
+        <>
+          <DailyForecast   
+            precipitation={precipitation} 
+            humidity={humidity} 
+            windSpeed={windSpeed} 
+            feelsLike={feelsLike} 
+            units={{ temp: tempUnit, wind: windUnit, rain: rainUnit }}
+          />
 
-      />
+          <WeeklyForecast 
+            weeklyForecast={weeklyForecast} 
+            units={tempUnit}
+          />
 
-      <WeeklyForecast 
-        weeklyForecast={weeklyForecast} 
-        units={tempUnit}
-        />
+          <HourlyForecast 
+            hourlyForecast={hourlyForecast} 
+            units={tempUnit}
+          />
 
-      <HourlyForecast 
-        hourlyForecast={hourlyForecast} 
-        units={tempUnit}
-        />
-
-      <CurrentWeather 
-        currentTemp={currentTemp} 
-        city={city} 
-        country={country} 
-        day={day} 
-        weatherCode={weatherCode}
-        units={tempUnit}
-        />
-      
+          <CurrentWeather 
+            currentTemp={currentTemp} 
+            city={city} 
+            country={country} 
+            day={day} 
+            weatherCode={weatherCode}
+            units={tempUnit}
+          />
+        </>
+      )}
     </>
-  )
+  );
 }
-
 export default App
