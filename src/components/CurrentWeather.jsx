@@ -16,21 +16,28 @@ function CurrentWeather({
 
   return (
     <>
-      <h1>Current Weather</h1>
 
-      <p>
-        {Math.round(displayTemp)}
-        {tempUnit}
-      </p>
+      <div id="main-content-wrapper">
+        
+        <div className="wrapper-date">
+          <p>{city}, {country}</p>
+          <p>{day}</p>
+        </div>
+        
+        <div className="temp-wrapper">
+          <img
+            src={weatherCodeMap[weatherCode]}
+            alt="Weather icon"
+            className="weather-icon"
+          />
+          <p>
+            {Math.round(displayTemp)}
+            {tempUnit}
+          </p>
+        </div>
+        
+      </div>
 
-      <p>{city}, {country}</p>
-      <p>{day}</p>
-
-      <img
-        src={weatherCodeMap[weatherCode]}
-        alt="Weather icon"
-        className="weather-icon"
-      />
     </>
   );
 }

@@ -73,7 +73,11 @@ function App() {
       return;
     }
     setCityNotFound(true);
-};
+  };
+
+  const handleLogoClick = () => {
+    setCityNotFound(false);
+  };
 
   return (
     <>
@@ -84,11 +88,13 @@ function App() {
         setWindUnit={setWindUnit}
         rainUnit={rainUnit}
         setRainUnit={setRainUnit}
+        onLogoClick={handleLogoClick}
       />
 
-      <h1>How is the sky looking today?</h1>
-
-      <SearchBar onSearch={handleSearch} />
+      <div id="wrapper-search-heading">
+        <h1>How is the sky looking today?</h1>
+        <SearchBar onSearch={handleSearch} />
+      </div>
 
       {cityNotFound ? (
         <div className="not-found">
