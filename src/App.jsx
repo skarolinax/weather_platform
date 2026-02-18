@@ -86,7 +86,8 @@ function App() {
         humidity={humidity} 
         windSpeed={windSpeed} 
         feelsLike={feelsLike} 
-        units={tempUnit}
+        units={{temp: tempUnit, wind: windUnit, rain: rainUnit}}
+
       />
 
       <WeeklyForecast 
