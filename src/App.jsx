@@ -20,6 +20,9 @@ function App() {
   const [weeklyForecast, setWeeklyForecast] = useState([]);
   const [hourlyForecast, setHourlyForecast] = useState([]);
   const [weatherCode, setWeatherCode] = useState(null);
+  const [tempUnit, setTempUnit] = useState('C');     
+  const [windUnit, setWindUnit] = useState('kmh');  
+  const [rainUnit, setRainUnit] = useState('mm');   
 
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
@@ -63,7 +66,16 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header
+        tempUnit={tempUnit}
+        setTempUnit={setTempUnit}
+        windUnit={windUnit}
+        setWindUnit={setWindUnit}
+        rainUnit={rainUnit}
+        setRainUnit={setRainUnit}
+
+      />
+
 
       <h1>How is the sky looking today?</h1>
 
@@ -74,11 +86,18 @@ function App() {
         humidity={humidity} 
         windSpeed={windSpeed} 
         feelsLike={feelsLike} 
+        units={tempUnit}
       />
 
-      <WeeklyForecast weeklyForecast={weeklyForecast} />
+      <WeeklyForecast 
+        weeklyForecast={weeklyForecast} 
+        units={tempUnit}
+        />
 
-      <HourlyForecast hourlyForecast={hourlyForecast} />
+      <HourlyForecast 
+        hourlyForecast={hourlyForecast} 
+        units={tempUnit}
+        />
 
       <CurrentWeather 
         currentTemp={currentTemp} 
@@ -86,6 +105,7 @@ function App() {
         country={country} 
         day={day} 
         weatherCode={weatherCode}
+        units={tempUnit}
         />
       
     </>
