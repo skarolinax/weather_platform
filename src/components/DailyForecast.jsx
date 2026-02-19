@@ -15,10 +15,22 @@ function DailyForecast({precipitation, humidity, windSpeed, feelsLike, units}) {
   return (
     <>
       <div className="dailyInfo-wrapper">
-        <p>Precipitation: {Math.round(displayPrecip)}{rainUnit}</p>
-        <p>Humidity: {humidity}%</p>
-        <p>Wind Speed: {Math.round(displayWind)}{windUnit}</p>
-        <p>Feels like: {Math.round(displayTemp)}{tempUnit}</p>
+        <div className="daily-cards">
+          <p>Precipitation</p>
+          <p>{Math.round(displayPrecip)}{rainUnit}</p>
+        </div>
+        <div className="daily-cards">
+          <p>Humidity</p>
+          <p>{humidity}%</p>
+        </div>
+        <div className="daily-cards">
+          <p>Wind Speed</p>
+          <p>{Math.round(displayWind)}{windUnit}</p>
+        </div>
+        <div className="daily-cards">
+          <p>Feels like</p>
+          <p>{Math.round(displayTemp)}{tempUnit}</p>
+        </div>
       </div>
  
     </>

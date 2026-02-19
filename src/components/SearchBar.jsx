@@ -11,14 +11,14 @@ function SearchBar({ onSearch }) {
 
   return (
     <div className="search-bar">
-      <img src={searchIcon} alt="Search icon" />
+      {/* <img src={searchIcon} alt="Search icon" /> */}
       <input
         type="search"
         placeholder="Search for a place.."
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="button" onClick={handleSearch}>Search</button>
+      <button type="button" id='search-button' onClick={handleSearch}>Search</button>
     </div>
   );
 }

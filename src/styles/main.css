@@ -6,7 +6,7 @@
 
 body {
   background-color: hsl(243, 96%, 9%);
-  font-size: 18px;
+  font-size: 16px;
   color: hsl(250, 6%, 84%);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -29,7 +29,14 @@ header {
 
 main {
   display: flex;
-  justify-content: space-evenly;
+  padding: 50px;
+  gap: 50px;
+}
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    padding: 20px;
+  }
 }
 
 #wrapper-search-heading {
@@ -40,32 +47,65 @@ main {
   margin-top: 40px;
 }
 #wrapper-search-heading h1 {
-  font-size: clamp(32px, 5vw, 58px);
+  font-size: clamp(28px, 5vw, 58px);
 }
 
 #main-content-wrapper {
   border-radius: 10px;
-  background-color: hsl(248, 70%, 36%);
+  background-image: url("../assets/images/bg-today-large.svg");
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 300px;
+}
+#main-content-wrapper img {
+  width: 150px;
+  height: 150px;
+}
+@media (max-width: 768px) {
+  #main-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-image: url("../assets/images/bg-today-small.svg");
+  }
 }
 
 .temp-wrapper {
   display: flex;
   align-items: center;
 }
+.temp-wrapper p {
+  font-size: 54px;
+  font-weight: bold;
+}
+
+.wrapper-date p:nth-child(1) {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.wrapper-date p:nth-child(2) {
+  font-size: 18px;
+  color: hsl(240, 6%, 70%);
+}
 
 .dailyInfo-wrapper {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .wrapper-weekly {
   display: flex;
-  justify-content: space-around;
   margin-top: 20px;
-  gap: 10px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .weekly-card-name {
@@ -76,11 +116,15 @@ main {
   flex-direction: column;
   padding: 20px;
   border: 1px solid hsl(243, 23%, 24%);
+  flex: 1 1 100px;
+  min-height: 163px;
+  height: auto;
+  justify-content: space-evenly;
 }
 
 .minmax-row {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
 }
 .minmax-row p:nth-child(2) {
   color: hsl(240, 6%, 70%);
@@ -101,8 +145,61 @@ main {
   border: 1px solid hsl(243, 23%, 30%);
   background-color: hsl(243, 23%, 24%);
   margin-block: 20px;
+  padding: 15px;
 }
 .hourly-card-name div:first-of-type {
   display: flex;
   align-items: center;
+}
+
+.daily-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid hsl(243, 23%, 24%);
+  background-color: hsl(243, 27%, 20%);
+  padding: 20px;
+  flex: 1 1 100px;
+}
+.daily-cards p:nth-child(2) {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+#search-button {
+  cursor: pointer;
+  background-color: hsl(233, 67%, 56%);
+  border-radius: 10px;
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-weight: 700;
+}
+
+.search-bar {
+  padding: 20px;
+}
+@media (max-width: 768px) {
+  .search-bar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+input {
+  background-color: hsl(243, 23%, 24%);
+  border: solid 1px hsl(243, 23%, 30%);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.wrapper-left {
+  flex: 2;
+}
+
+.wrapper-right {
+  flex: 1;
 }/*# sourceMappingURL=main.css.map */

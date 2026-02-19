@@ -8,7 +8,7 @@
 
 body {
     background-color: $neutral-900;
-    font-size: 18px;
+    font-size: 16px;
     color: $neutral-200;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -35,7 +35,13 @@ header {
 
 main {
     display: flex;
-    justify-content: space-evenly;
+    padding: 50px;
+    gap: 50px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        padding: 20px;
+    }
 }
 
 #wrapper-search-heading {
@@ -46,34 +52,74 @@ main {
     margin-top: 40px;
 
     h1 {
-        font-size: clamp(32px, 5vw, 58px);
+        font-size: clamp(28px, 5vw, 58px);
     }
 }
 
 #main-content-wrapper {
     border-radius: 10px;
-    background-color: $blue-700;
+    background-image: url("../assets/images/bg-today-large.svg");
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    height: 300px;
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        background-image: url("../assets/images/bg-today-small.svg");
+    }
+
 }
 
 .temp-wrapper {
     display: flex;
-    align-items: center;
+    align-items: center; 
+
+    p {
+        font-size: 54px;
+        font-weight: bold;
+    }
+}
+
+.wrapper-date {
+    p:nth-child(1) {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    p:nth-child(2) {
+        font-size: 18px;
+        color: $neutral-300;
+    }
 }
 
 .dailyInfo-wrapper {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
 }
 
 
 .wrapper-weekly {
     display: flex;
-    justify-content: space-around;
     margin-top: 20px;
-    gap: 10px;
+    gap: 15px;
+    flex-wrap: wrap;
+
 }
 
 .weekly-card-name {
@@ -84,11 +130,15 @@ main {
     flex-direction: column;
     padding: 20px;
     border: 1px solid $neutral-700;
+    flex: 1 1 100px;
+    min-height: 163px;     
+    height: auto;
+    justify-content: space-evenly;
 }
 
 .minmax-row {
     display: flex;
-    justify-content: space-between;
+    gap:10px;
 
     p:nth-child(2) {
         color: $neutral-300;
@@ -111,9 +161,64 @@ main {
     border: 1px solid $neutral-600;
     background-color: $neutral-700;
     margin-block: 20px;
+    padding: 15px;
 
     div:first-of-type {
         display: flex;
         align-items: center;
     }
 }
+
+.daily-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid $neutral-700;
+    background-color: $neutral-800;
+    padding: 20px;
+    flex: 1 1 100px;
+
+    p:nth-child(2) {
+        font-size: 24px;
+        margin-top: 10px;
+    }
+}
+
+#search-button {
+    cursor: pointer;
+    background-color: $blue-500;
+    border-radius: 10px;
+    color: $neutral-0;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-weight: 700;
+}
+
+.search-bar {
+    padding: 20px;
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+    }
+}
+
+input {
+    background-color: $neutral-700;
+    border: solid 1px $neutral-600;
+    border-radius: 10px;
+    padding: 15px;
+
+}
+
+.wrapper-left {
+    flex:2;
+}
+
+.wrapper-right {
+    flex:1;
+}
+
