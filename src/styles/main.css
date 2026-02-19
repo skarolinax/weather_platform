@@ -27,6 +27,11 @@ header {
   padding: 20px;
 }
 
+main {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #wrapper-search-heading {
   display: flex;
   flex-direction: column;
@@ -47,6 +52,57 @@ header {
 }
 
 .temp-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dailyInfo-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.wrapper-weekly {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.weekly-card-name {
+  border-radius: 10px;
+  background-color: hsl(243, 27%, 20%);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid hsl(243, 23%, 24%);
+}
+
+.minmax-row {
+  display: flex;
+  justify-content: space-between;
+}
+.minmax-row p:nth-child(2) {
+  color: hsl(240, 6%, 70%);
+}
+
+.hourly-wrapper {
+  padding: 20px;
+  border: 1px solid hsl(243, 23%, 24%);
+  background-color: hsl(243, 27%, 20%);
+  border-radius: 10px;
+}
+
+.hourly-card-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid hsl(243, 23%, 30%);
+  background-color: hsl(243, 23%, 24%);
+  margin-block: 20px;
+}
+.hourly-card-name div:first-of-type {
   display: flex;
   align-items: center;
 }/*# sourceMappingURL=main.css.map */

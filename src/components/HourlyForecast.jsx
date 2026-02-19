@@ -10,28 +10,34 @@ function HourlyForecast({hourlyForecast, units}) {
 
   return (
     <>
-    <h1>Hourly Forecast</h1>
-    {hourlyForecast.time.map((time,index) => ({
-        time: new Date(time),
-        index,
-        displayTemp: units === 'F' ? cToF(hourlyForecast.temperature_2m[index]) : hourlyForecast.temperature_2m[index]
-    }))
-    .filter(item => item.time >= currentTime)
-    .slice(0, 8) // Show only the next 8 hours
-    .map(({ time, index, displayTemp }) => (
-            <div key={time.toISOString()}>
-                
-                <img 
-                    src={weatherCodeMap[hourlyForecast.weather_code[index]]} 
-                    alt="Weather icon" 
-                    className='weather-icon'
+    <aside className="hourly-wrapper">
+        <h1>Hourly Forecast</h1>
+        {hourlyForecast.time.map((time,index) => ({
+            time: new Date(time),
+            index,
+            displayTemp: units === 'F' ? cToF(hourlyForecast.temperature_2m[index]) : hourlyForecast.temperature_2m[index]
+        }))
+        .filter(item => item.time >= currentTime)
+        .slice(0, 8) // Show only the next 8 hours
+        .map(({ time, index, displayTemp }) => (
+                <div key={time.toISOString()} className='hourly-card-name'>
+        
+                    <div>
+                        <img
+                            src={weatherCodeMap[hourlyForecast.weather_code[index]]}
+                            alt="Weather icon"
+                            className='weather-icon'
+                        />
+                        <p>{time.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true })}</p>
+                    </div>
 
-                />
-                <p>{time.toLocaleTimeString('en-US', {hour: 'numeric', hour12: true })}</p>
-                <p>Temperature: {Math.round(displayTemp)}{tempUnit}</p>
-            </div>
-        )
-    )}
+                    <div>
+                        <p>{Math.round(displayTemp)}{tempUnit}</p>
+                    </div>
+                </div>
+            )
+        )}
+    </aside>
     </>
   )
 }

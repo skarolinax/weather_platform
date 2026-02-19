@@ -102,32 +102,37 @@ function App() {
         </div>
       ) : (
         <>
-          <DailyForecast   
-            precipitation={precipitation} 
-            humidity={humidity} 
-            windSpeed={windSpeed} 
-            feelsLike={feelsLike} 
-            units={{ temp: tempUnit, wind: windUnit, rain: rainUnit }}
-          />
+          <main>
+            <div className="wrapper-left">
+              <CurrentWeather
+                currentTemp={currentTemp}
+                city={city}
+                country={country}
+                day={day}
+                weatherCode={weatherCode}
+                units={tempUnit}
+              />
+              <DailyForecast
+                precipitation={precipitation}
+                humidity={humidity}
+                windSpeed={windSpeed}
+                feelsLike={feelsLike}
+                units={{ temp: tempUnit, wind: windUnit, rain: rainUnit }}
+              />
+              <WeeklyForecast
+                weeklyForecast={weeklyForecast}
+                units={tempUnit}
+              />
+            </div>
+            <div className="wrapper-right">
+              <HourlyForecast
+                hourlyForecast={hourlyForecast}
+                units={tempUnit}
+              />
+            </div>
+          </main>
 
-          <WeeklyForecast 
-            weeklyForecast={weeklyForecast} 
-            units={tempUnit}
-          />
-
-          <HourlyForecast 
-            hourlyForecast={hourlyForecast} 
-            units={tempUnit}
-          />
-
-          <CurrentWeather 
-            currentTemp={currentTemp} 
-            city={city} 
-            country={country} 
-            day={day} 
-            weatherCode={weatherCode}
-            units={tempUnit}
-          />
+          
         </>
       )}
     </>

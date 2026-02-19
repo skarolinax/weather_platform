@@ -14,11 +14,12 @@ function DailyForecast({precipitation, humidity, windSpeed, feelsLike, units}) {
     
   return (
     <>
-    <h1>Daily Forecast</h1>
-      <p>Precipitation: {Math.round(displayPrecip)}{rainUnit}</p>
-      <p>Humidity: {humidity}%</p>
-      <p>Wind Speed: {Math.round(displayWind)}{windUnit}</p>
-      <p>Feels like: {Math.round(displayTemp)}{tempUnit}</p>
+      <div className="dailyInfo-wrapper">
+        <p>Precipitation: {Math.round(displayPrecip)}{rainUnit}</p>
+        <p>Humidity: {humidity}%</p>
+        <p>Wind Speed: {Math.round(displayWind)}{windUnit}</p>
+        <p>Feels like: {Math.round(displayTemp)}{tempUnit}</p>
+      </div>
  
     </>
   )
