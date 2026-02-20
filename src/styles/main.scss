@@ -198,11 +198,11 @@ main {
 
 .search-bar {
     padding: 20px;
+
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
         width: 100%;
-        
     }
 }
 
@@ -211,7 +211,19 @@ input {
     border: solid 1px $neutral-600;
     border-radius: 10px;
     padding: 15px;
+    color: $neutral-200;
+    margin-right: 10px;
+    width: 600px;
 
+     &::-webkit-search-cancel-button {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
 }
 
 .wrapper-left {
@@ -222,3 +234,53 @@ input {
     flex:1;
 }
 
+.not-found {
+    justify-content: center;
+    display: flex;
+}
+
+
+// Header style with dropdown menu 
+
+#dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: $neutral-800;
+  padding: 15px;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+#dropdown-menu:hover .dropdown-content {
+  display: block;
+}
+
+#dropdown-menu:focus-within .dropdown-content {
+  display: block;
+}
+
+.dropbtn {
+    background-color: $neutral-800;
+    border-radius: 10px;
+    border: 1px solid $neutral-700;
+    padding: 10px;
+    font-size: 18px;
+    color: $neutral-200;
+    display: flex;
+    align-items: center;
+
+    svg {
+        margin-left: 10px;
+    }
+}
