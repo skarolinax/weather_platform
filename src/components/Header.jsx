@@ -8,7 +8,9 @@ function Header({
     setWindUnit,
     rainUnit,
     setRainUnit,
-    onLogoClick
+    onLogoClick,
+    setEuropeanUnits,
+    setUSUnits
     }) {
   return (
     <>
@@ -19,6 +21,24 @@ function Header({
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="8" fill="none" viewBox="0 0 13 8"><path fill="#fff" d="M6.309 7.484 1.105 2.316c-.175-.14-.175-.421 0-.597l.704-.668a.405.405 0 0 1 .597 0l4.219 4.148 4.184-4.148c.175-.176.457-.176.597 0l.703.668c.176.176.176.457 0 .597L6.906 7.484a.405.405 0 0 1-.597 0Z"/></svg>
           </button>
           <div className="dropdown-content">
+            <label htmlFor="switch-metric">Switch to:</label>
+            <div className="unit-toggle-container">
+              <button 
+                type="button"
+                className={tempUnit === 'C' ? 'unit-btn active' : 'unit-btn'} 
+                onClick={setEuropeanUnits}
+              >
+                Metric 
+              </button>
+              
+              <button 
+                type="button"
+                className={tempUnit === 'F' ? 'unit-btn active' : 'unit-btn'} 
+                onClick={setUSUnits}
+              >
+                Imperial 
+              </button>
+            </div>
             <label htmlFor="temperature-units">Temperature</label>
             <select
               id="temperature-units"

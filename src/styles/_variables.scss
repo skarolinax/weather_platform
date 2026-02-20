@@ -12,3 +12,12 @@ $orange-500: hsl(28, 100%, 52%);
 // Blue
 $blue-500: hsl(233, 67%, 56%);
 $blue-700: hsl(248, 70%, 36%);
+
+// Mixins
+
+@mixin flex-center($direction: row, $justify: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: center;
+}

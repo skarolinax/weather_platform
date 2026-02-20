@@ -30,6 +30,7 @@ body {
 
 header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -50,6 +51,7 @@ main {
 #wrapper-search-heading {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   margin-top: 40px;
@@ -64,8 +66,9 @@ main {
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
   padding: 20px;
   height: 300px;
@@ -119,15 +122,15 @@ main {
 .weekly-card-name {
   border-radius: 10px;
   background-color: hsl(243, 27%, 20%);
-  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 20px;
   border: 1px solid hsl(243, 23%, 24%);
   flex: 1 1 100px;
-  min-height: 163px;
+  min-height: 160px;
   height: auto;
-  justify-content: space-evenly;
 }
 
 .minmax-row {
@@ -147,6 +150,7 @@ main {
 
 .hourly-card-name {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
@@ -252,7 +256,6 @@ input::-webkit-search-cancel-button {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .dropdown-content label {
-  margin-bottom: 50px;
   color: hsl(240, 6%, 70%);
   font-size: 14px;
 }
@@ -285,4 +288,28 @@ input::-webkit-search-cancel-button {
 }
 .dropbtn svg {
   margin-left: 10px;
+}
+
+.unit-toggle-container {
+  display: flex;
+  gap: 10px;
+  margin-block: 15px;
+}
+.unit-toggle-container .unit-btn {
+  flex: 1;
+  background-color: hsl(243, 23%, 24%);
+  color: hsl(240, 6%, 70%);
+  border: 1px solid transparent;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.unit-toggle-container .unit-btn.active {
+  border-color: hsl(250, 6%, 84%);
+  color: hsl(250, 6%, 84%);
+  font-weight: bold;
+}
+.unit-toggle-container .unit-btn:hover:not(.active) {
+  background-color: hsl(243, 23%, 30%);
 }/*# sourceMappingURL=main.css.map */

@@ -79,6 +79,19 @@ function App() {
     setCityNotFound(false);
   };
 
+  //Used for toggling the units in the Header.jsx
+  const setEuropeanUnits = () => {
+    setTempUnit('C');
+    setWindUnit('kmh');
+    setRainUnit('mm');
+  };
+
+  const setUSUnits = () => {
+    setTempUnit('F');
+    setWindUnit('mph');
+    setRainUnit('in');
+  };
+
   return (
     <>
       <Header
@@ -89,6 +102,8 @@ function App() {
         rainUnit={rainUnit}
         setRainUnit={setRainUnit}
         onLogoClick={handleLogoClick}
+        setEuropeanUnits={setEuropeanUnits}
+        setUSUnits={setUSUnits}
       />
 
       <div id="wrapper-search-heading">
