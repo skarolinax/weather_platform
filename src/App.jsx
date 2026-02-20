@@ -6,6 +6,7 @@ import CurrentWeather from './components/CurrentWeather'
 import WeeklyForecast from './components/WeeklyForecast'
 import DailyForecast from './components/DailyForecast'
 import HourlyForecast from './components/HourlyForecast'
+import errorIcon from './assets/images/icon-error.svg';
 
 function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
@@ -25,10 +26,12 @@ function App() {
   const [rainUnit, setRainUnit] = useState('mm');   
 
   const [cityNotFound, setCityNotFound] = useState(false);
+  const [apiError, setApiError] = useState(false);
 
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
     const fetchWeather = async () => {
+      setApiError(false);
       try {
         const response = await fetch(
           "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=,temperature_2m,weather_code&current=apparent_temperature,precipitation,relative_humidity_2m,wind_speed_10m,temperature_2m,weather_code");
@@ -60,6 +63,7 @@ function App() {
 
       } catch (error) {
         console.error("Error fetching weather:", error);
+        setApiError(true);
       }
     };
 
@@ -106,6 +110,15 @@ function App() {
         setUSUnits={setUSUnits}
       />
 
+    {apiError ? (
+        <div className="not-found-api">
+          <img src={errorIcon} alt="Error sign" />
+          <h1>Something went wrong</h1>
+          <h2>Sorry, we're having trouble fetching the weather data (API error). Please try again later.</h2>
+          <button onClick={() => window.location.reload()}>Refresh</button>
+        </div>
+      ) : (
+      <>
       <div id="wrapper-search-heading">
         <h1>How is the sky looking today?</h1>
         <SearchBar onSearch={handleSearch} />
@@ -116,7 +129,6 @@ function App() {
           <h2>No search result found.</h2>
         </div>
       ) : (
-        <>
           <main>
             <div className="wrapper-left">
               <CurrentWeather
@@ -147,10 +159,11 @@ function App() {
             </div>
           </main>
 
-          
+        )}
         </>
       )}
     </>
   );
 }
+
 export default App

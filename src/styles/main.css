@@ -188,6 +188,11 @@ main {
   border-radius: 10px;
   padding: 15px;
   font-weight: 700;
+  transition: all 0.2s ease;
+}
+#search-button:hover {
+  background-color: hsl(248, 70%, 36%);
+  color: hsl(250, 6%, 84%);
 }
 
 .search-bar {
