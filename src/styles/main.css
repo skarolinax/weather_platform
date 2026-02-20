@@ -16,6 +16,14 @@ body {
   height: 50px;
 }
 
+::-moz-selection {
+  background-color: hsl(243, 96%, 9%);
+}
+
+::selection {
+  background-color: hsl(243, 96%, 9%);
+}
+
 #logo-image {
   cursor: pointer;
 }
@@ -238,8 +246,23 @@ input::-webkit-search-cancel-button {
   right: 0;
   background: hsl(243, 27%, 20%);
   padding: 15px;
+  border: 1px solid hsl(243, 23%, 24%);
   border-radius: 10px;
   z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.dropdown-content label {
+  margin-bottom: 50px;
+  color: hsl(240, 6%, 70%);
+  font-size: 14px;
+}
+.dropdown-content select {
+  background-color: hsl(243, 23%, 24%);
+  border: solid 1px hsl(243, 23%, 30%);
+  border-radius: 10px;
+  padding: 10px;
+  color: hsl(250, 6%, 84%);
+  margin-block: 15px;
 }
 
 #dropdown-menu:hover .dropdown-content {

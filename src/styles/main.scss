@@ -18,6 +18,10 @@ body {
     height: 50px;
 }
 
+::selection {
+    background-color: $neutral-900;
+}
+
 //Header styling
 
 #logo-image {
@@ -258,8 +262,25 @@ input {
   right: 0;
   background: $neutral-800;
   padding: 15px;
+  border: 1px solid $neutral-700;
   border-radius: 10px;
   z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    label {
+        margin-bottom: 50px;
+        color: $neutral-300;
+        font-size: 14px;
+    }
+
+    select {
+        background-color: $neutral-700;
+        border: solid 1px $neutral-600;
+        border-radius: 10px;
+        padding: 10px;
+        color: $neutral-200;
+        margin-block: 15px;
+    }
 }
 
 #dropdown-menu:hover .dropdown-content {
