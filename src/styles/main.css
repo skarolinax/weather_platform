@@ -158,6 +158,7 @@ main {
   background-color: hsl(243, 23%, 24%);
   margin-block: 20px;
   padding: 15px;
+  min-height: 80px;
 }
 .hourly-card-name div:first-of-type {
   display: flex;
@@ -317,4 +318,68 @@ input::-webkit-search-cancel-button {
 }
 .unit-toggle-container .unit-btn:hover:not(.active) {
   background-color: hsl(243, 23%, 30%);
+}
+
+.not-found-api {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.not-found-api img {
+  height: 60px;
+  width: 60px;
+}
+.not-found-api h1 {
+  font-size: 40px;
+  margin-block: 15px;
+}
+.not-found-api h2 {
+  font-weight: normal;
+  font-size: 20px;
+  color: hsl(240, 6%, 70%);
+}
+.not-found-api button {
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: hsl(243, 23%, 24%);
+  border: solid 1px hsl(243, 23%, 30%);
+  border-radius: 10px;
+  color: hsl(0, 0%, 100%);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+.not-found-api button svg {
+  margin-right: 10px;
+}
+.not-found-api button:hover {
+  background-color: hsl(243, 23%, 30%);
+}
+
+.skeleton-card {
+  border: 1px solid hsl(243, 23%, 24%) !important;
+  background: none !important;
+  background-color: hsl(243, 27%, 20%) !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
+.skeleton-card img {
+  width: 50px !important;
+  height: 50px !important;
+  margin-bottom: 20px !important;
+}
+
+.loading-icon-skeleton {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=main.css.map */

@@ -153,6 +153,7 @@ main {
     background-color: $neutral-700;
     margin-block: 20px;
     padding: 15px;
+    min-height: 80px;
 
     div:first-of-type {
         display: flex;
@@ -324,3 +325,74 @@ input {
     }
   }
 }
+
+// Eror page styles
+
+.not-found-api {
+    @include flex-center(column, center);
+    text-align: center;
+
+    img {
+        height: 60px;
+        width: 60px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-block: 15px;
+
+    }
+
+    h2 {
+        font-weight: normal;
+        font-size: 20px;
+        color: $neutral-300;
+    }
+
+    button {
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: $neutral-700;
+        border: solid 1px $neutral-600;
+        border-radius: 10px;
+        color: $neutral-0;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        transition: all 0.2s ease;
+
+        svg {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            background-color: $neutral-600;
+        }
+    }
+}
+
+// Skeleton styles
+
+.skeleton-card {
+    border: 1px solid $neutral-700 !important;
+    background: none !important;
+    background-color: $neutral-800 !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+
+    img {
+        width: 50px !important;
+        height: 50px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+.loading-icon-skeleton {
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+

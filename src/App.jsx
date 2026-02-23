@@ -8,6 +8,12 @@ import DailyForecast from './components/DailyForecast'
 import HourlyForecast from './components/HourlyForecast'
 import errorIcon from './assets/images/icon-error.svg';
 
+// Skeletons 
+import CurrentWeatherSkeleton from './components/CurrentWeatherSkeleton';
+import DailyForecastSkeleton from './components/DailyForecastSkeleton';
+import WeeklyForecastSkeleton from './components/WeeklyForecastSkeleton';
+import HourlyForecastSkeleton from './components/HourlyForecastSkeleton';
+
 function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
   const [city, setCity] = useState(null);
@@ -27,11 +33,13 @@ function App() {
 
   const [cityNotFound, setCityNotFound] = useState(false);
   const [apiError, setApiError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch weather data on component mount and pass as prop
    useEffect(() => {
     const fetchWeather = async () => {
       setApiError(false);
+      setIsLoading(true);
       try {
         const response = await fetch(
           "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=,temperature_2m,weather_code&current=apparent_temperature,precipitation,relative_humidity_2m,wind_speed_10m,temperature_2m,weather_code");
@@ -60,10 +68,12 @@ function App() {
         });
 
         setDay(day);
+        setIsLoading(false);
 
       } catch (error) {
         console.error("Error fetching weather:", error);
         setApiError(true);
+        setIsLoading(false);
       }
     };
 
@@ -110,56 +120,81 @@ function App() {
         setUSUnits={setUSUnits}
       />
 
-    {apiError ? (
+      {apiError ? (
         <div className="not-found-api">
           <img src={errorIcon} alt="Error sign" />
           <h1>Something went wrong</h1>
-          <h2>Sorry, we're having trouble fetching the weather data (API error). Please try again later.</h2>
-          <button onClick={() => window.location.reload()}>Refresh</button>
+          <h2>
+            Sorry, we're having trouble fetching the weather data (API error).
+            Please try again later.
+          </h2>
+          <button onClick={() => window.location.reload()}>
+            Refresh
+          </button>
         </div>
       ) : (
-      <>
-      <div id="wrapper-search-heading">
-        <h1>How is the sky looking today?</h1>
-        <SearchBar onSearch={handleSearch} />
-      </div>
+        <>
+          <div id="wrapper-search-heading">
+            <h1>How is the sky looking today?</h1>
+            <SearchBar onSearch={handleSearch} />
+          </div>
 
-      {cityNotFound ? (
-        <div className="not-found">
-          <h2>No search result found.</h2>
-        </div>
-      ) : (
-          <main>
-            <div className="wrapper-left">
-              <CurrentWeather
-                currentTemp={currentTemp}
-                city={city}
-                country={country}
-                day={day}
-                weatherCode={weatherCode}
-                units={tempUnit}
-              />
-              <DailyForecast
-                precipitation={precipitation}
-                humidity={humidity}
-                windSpeed={windSpeed}
-                feelsLike={feelsLike}
-                units={{ temp: tempUnit, wind: windUnit, rain: rainUnit }}
-              />
-              <WeeklyForecast
-                weeklyForecast={weeklyForecast}
-                units={tempUnit}
-              />
+          {cityNotFound ? (
+            <div className="not-found">
+              <h2>No search result found.</h2>
             </div>
-            <div className="wrapper-right">
-              <HourlyForecast
-                hourlyForecast={hourlyForecast}
-                units={tempUnit}
-              />
-            </div>
-          </main>
+          ) : (
+            <main>
+              {isLoading ? (
+                <>
+                  <div className="wrapper-left">
+                    <CurrentWeatherSkeleton />
+                    <DailyForecastSkeleton />
+                    <WeeklyForecastSkeleton />
+                  </div>
 
-        )}
+                  <div className="wrapper-right">
+                    <HourlyForecastSkeleton />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="wrapper-left">
+                    <CurrentWeather
+                      currentTemp={currentTemp}
+                      city={city}
+                      country={country}
+                      day={day}
+                      weatherCode={weatherCode}
+                      units={tempUnit}
+                    />
+                    <DailyForecast
+                      precipitation={precipitation}
+                      humidity={humidity}
+                      windSpeed={windSpeed}
+                      feelsLike={feelsLike}
+                      units={{
+                        temp: tempUnit,
+                        wind: windUnit,
+                        rain: rainUnit,
+                      }}
+                    />
+                    <WeeklyForecast
+                      weeklyForecast={weeklyForecast}
+                      units={tempUnit}
+                    />
+                  </div>
+
+                  <div className="wrapper-right">
+                    <HourlyForecast
+                      hourlyForecast={hourlyForecast}
+                      units={tempUnit}
+                    />
+                  </div>
+                </>
+              )}
+            </main>
+          )}
         </>
       )}
     </>
