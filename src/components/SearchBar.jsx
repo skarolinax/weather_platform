@@ -2,11 +2,11 @@ import { useState } from 'react';
 import '../styles/main.scss';
 import searchIcon from '../assets/images/icon-search.svg';
 
-function SearchBar({ onSearch }) {
-  const [input, setInput] = useState('');
+function SearchBar({ onSearch, input, setInput }) {
 
+  // Handle search button click (function in App.jsx)
   const handleSearch = () => {
-    onSearch(input); //Letting the App to handle the search for now
+    onSearch(input);
   };
 
   return (

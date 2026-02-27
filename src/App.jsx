@@ -34,15 +34,16 @@ function App() {
   const [cityNotFound, setCityNotFound] = useState(false);
   const [apiError, setApiError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [input, setInput] = useState("");
 
   // Fetch weather data on component mount and pass as prop
-   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeather = async (lat, lon) => {
       setApiError(false);
       setIsLoading(true);
+
       try {
         const response = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=,temperature_2m,weather_code&current=apparent_temperature,precipitation,relative_humidity_2m,wind_speed_10m,temperature_2m,weather_code");
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weather_code&hourly=temperature_2m,weather_code&current=apparent_temperature,precipitation,relative_humidity_2m,wind_speed_10m,temperature_2m,weather_code`);
 
         const data = await response.json();
 
@@ -52,9 +53,6 @@ function App() {
         setWindSpeed(data.current.wind_speed_10m);
         setFeelsLike(data.current.apparent_temperature);
         setWeatherCode(data.current.weather_code);
-
-        setCity("Berlin");
-        setCountry("Germany"); // How to geolocate country from API?
 
         setHourlyForecast(data.hourly);
         setWeeklyForecast(data.daily);
@@ -75,20 +73,48 @@ function App() {
         setApiError(true);
         setIsLoading(false);
       }
-    };
+    };  
 
-    fetchWeather();
-  }, []); 
+    useEffect(() => {
+      fetchWeather(52.52, 13.41); //Set default location to Berlin, Germany
+      setCity("Berlin");
+      setCountry("Germany"); 
+    }, []);
 
-  // Letting all searches fail cause I don't want to deal with the API and geolcation right now, but I want to show the error message when search is used
-  const handleSearch = (input) => {
-     if (input.trim().length < 3 || !input.trim()) {
+  // Fetch weather data based on search input
+  const handleSearch = async () => {
+    if (!input) {
       setCityNotFound(true);
       return;
-    }
-    setCityNotFound(true);
-  };
+    };
 
+    try {
+      const geoResponse = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`
+      );
+
+      const geoData = await geoResponse.json();
+      console.log(geoData);
+
+      if (!geoData.results || geoData.results.length === 0) {
+        setCityNotFound(true);
+        return;
+      }
+
+      const { latitude, longitude, name, country } = geoData.results[0];
+
+      setCity(name);
+      setCountry(country);
+      setCityNotFound(false);
+
+      await fetchWeather(latitude, longitude);
+
+    } catch (error) {
+      console.error("Error finding search result:", error);
+      setCityNotFound(true);
+    }
+  };
+  
   const handleLogoClick = () => {
     setCityNotFound(false);
   };
@@ -137,7 +163,10 @@ function App() {
         <>
           <div id="wrapper-search-heading">
             <h1>How is the sky looking today?</h1>
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar 
+              input={input}
+              setInput={setInput}
+              onSearch={handleSearch} />
           </div>
 
           {cityNotFound ? (
