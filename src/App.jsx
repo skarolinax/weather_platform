@@ -90,18 +90,22 @@ function App() {
 
     try {
       const geoResponse = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=en&format=json`
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(input)}&count=10&language=en&format=json`
       );
 
       const geoData = await geoResponse.json();
       console.log(geoData);
 
-      if (!geoData.results || geoData.results.length === 0) {
+      const filteredResults = geoData.results.filter( //Remove all the countries from the search results, display just cities
+        item => item.feature_code !== "PCLI" //PCLI is the feature code for countries in the geocoding API
+      );
+
+      if (!filteredResults || filteredResults.length === 0) {
         setCityNotFound(true);
         return;
       }
 
-      const { latitude, longitude, name, country } = geoData.results[0];
+      const { latitude, longitude, name, country } = filteredResults[0];
 
       setCity(name);
       setCountry(country);
