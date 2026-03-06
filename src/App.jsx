@@ -76,11 +76,70 @@ function App() {
       }
     };  
 
+    // Fetching location name based on coordinates and set city and country state 
+
+    const fetchLocationName = async (lat, lon) => {
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=en`,
+          {
+            headers: {
+              "User-Agent": "weather-app"
+            }
+          }
+        );
+
+        const locationData = await response.json();
+
+        if (locationData && locationData.address) {
+          setCity(
+            locationData.address.city ||
+            locationData.address.town ||
+            locationData.address.village ||
+            locationData.address.municipality ||
+            locationData.address.county ||
+            "Unknown location"
+          );
+
+          setCountry(locationData.address.country ?? ""); // If no country is founf
+        }
+
+      } catch (error) {
+        console.log("Couldn't fetch location name", error);
+      }
+    };
+
+    // Set default location
     useEffect(() => {
-      fetchWeather(52.52, 13.41); //Set default location to Berlin, Germany
-      setCity("Berlin");
-      setCountry("Germany"); 
-    }, []);
+      const defaultLat = 52.52;
+      const defaultLon = 13.41;
+
+      if (!navigator.geolocation) {
+        fetchWeather(defaultLat, defaultLon);
+        setCity("Berlin");
+        setCountry("Germany");
+        return;
+      }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        await Promise.all([ // Reduce the flicker to fetch in at the same time
+          fetchWeather(latitude, longitude),
+          fetchLocationName(latitude, longitude)
+        ]);
+
+        console.log("User location:", latitude, longitude);
+      },
+      () => {
+        fetchWeather(defaultLat, defaultLon);
+        setCity("Berlin");
+        setCountry("Germany");
+        console.log("Permission denied");
+      }
+    );
+  }, []);
 
   // Fetch weather data based on search input
   const handleSearch = async () => {
@@ -136,6 +195,7 @@ function App() {
     setWindUnit('mph');
     setRainUnit('in');
   };
+
 
   return (
     <>
