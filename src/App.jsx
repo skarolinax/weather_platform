@@ -15,6 +15,8 @@ import DailyForecastSkeleton from './components/DailyForecastSkeleton';
 import WeeklyForecastSkeleton from './components/WeeklyForecastSkeleton';
 import HourlyForecastSkeleton from './components/HourlyForecastSkeleton';
 
+import { setThemeByTime } from './components/utils/themeByTime';
+
 function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
   const [city, setCity] = useState(null);
@@ -101,7 +103,7 @@ function App() {
             "Unknown location"
           );
 
-          setCountry(locationData.address.country ?? ""); // If no country is founf
+          setCountry(locationData.address.country ?? ""); // If no country is found
         }
 
       } catch (error) {
@@ -111,6 +113,7 @@ function App() {
 
     // Set default location
     useEffect(() => {
+      setThemeByTime();
       const defaultLat = 52.52;
       const defaultLon = 13.41;
 

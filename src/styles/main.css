@@ -1,3 +1,38 @@
+:root[data-theme=night] {
+  --neutral-900: hsl(243, 96%, 9%);
+  --neutral-800: hsl(243, 27%, 20%);
+  --neutral-700: hsl(243, 23%, 24%);
+  --neutral-600: hsl(243, 23%, 30%);
+  --neutral-300: hsl(240, 6%, 70%);
+  --neutral-200: hsl(250, 6%, 84%);
+  --neutral-0: hsl(0, 0%, 100%);
+}
+
+:root[data-theme=morning] {
+  --neutral-900: hsl(243, 40%, 40%);
+  --neutral-800: hsl(243, 30%, 55%);
+  --neutral-700: hsl(243, 25%, 65%);
+  --neutral-600: hsl(243, 20%, 75%);
+  --neutral-300: hsl(240, 10%, 88%);
+  --neutral-200: hsl(240, 10%, 94%);
+  --neutral-0: hsl(0, 0%, 100%);
+}
+
+:root[data-theme=afternoon] {
+  --neutral-900: hsl(243, 50%, 20%);
+  --neutral-800: hsl(243, 35%, 32%);
+  --neutral-700: hsl(243, 28%, 40%);
+  --neutral-600: hsl(243, 22%, 48%);
+  --neutral-300: hsl(240, 8%, 75%);
+  --neutral-200: hsl(240, 8%, 88%);
+  --neutral-0: hsl(0, 0%, 100%);
+}
+
+:root {
+  --blue-500: hsl(233, 67%, 56%);
+  --blue-700: hsl(248, 70%, 36%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +40,9 @@
 }
 
 body {
-  background-color: hsl(243, 96%, 9%);
+  background-color: var(--neutral-900);
   font-size: 16px;
-  color: hsl(250, 6%, 84%);
+  color: var(--neutral-200);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -17,11 +52,11 @@ body {
 }
 
 ::-moz-selection {
-  background-color: hsl(243, 96%, 9%);
+  background-color: var(--neutral-900);
 }
 
 ::selection {
-  background-color: hsl(243, 96%, 9%);
+  background-color: var(--neutral-900);
 }
 
 #logo-image {
@@ -102,7 +137,7 @@ main {
 }
 .wrapper-date p:nth-child(2) {
   font-size: 18px;
-  color: hsl(240, 6%, 70%);
+  color: var(--neutral-300);
 }
 
 .dailyInfo-wrapper {
@@ -121,13 +156,13 @@ main {
 
 .weekly-card-name {
   border-radius: 10px;
-  background-color: hsl(243, 27%, 20%);
+  background-color: var(--neutral-800);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding: 20px;
-  border: 1px solid hsl(243, 23%, 24%);
+  border: 1px solid var(--neutral-700);
   flex: 1 1 100px;
   min-height: 160px;
   height: auto;
@@ -138,13 +173,13 @@ main {
   gap: 10px;
 }
 .minmax-row p:nth-child(2) {
-  color: hsl(240, 6%, 70%);
+  color: var(--neutral-300);
 }
 
 .hourly-wrapper {
   padding: 20px;
-  border: 1px solid hsl(243, 23%, 24%);
-  background-color: hsl(243, 27%, 20%);
+  border: 1px solid var(--neutral-700);
+  background-color: var(--neutral-800);
   border-radius: 10px;
 }
 
@@ -154,8 +189,8 @@ main {
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid hsl(243, 23%, 30%);
-  background-color: hsl(243, 23%, 24%);
+  border: 1px solid var(--neutral-600);
+  background-color: var(--neutral-700);
   margin-block: 20px;
   padding: 15px;
   min-height: 80px;
@@ -170,8 +205,8 @@ main {
   flex-direction: column;
   gap: 10px;
   border-radius: 10px;
-  border: 1px solid hsl(243, 23%, 24%);
-  background-color: hsl(243, 27%, 20%);
+  border: 1px solid var(--neutral-700);
+  background-color: var(--neutral-800);
   padding: 20px;
   flex: 1 1 100px;
 }
@@ -182,9 +217,9 @@ main {
 
 #search-button {
   cursor: pointer;
-  background-color: hsl(233, 67%, 56%);
+  background-color: var(--blue-500);
   border-radius: 10px;
-  color: hsl(0, 0%, 100%);
+  color: var(--neutral-0);
   border: none;
   border-radius: 10px;
   padding: 15px;
@@ -192,8 +227,8 @@ main {
   transition: all 0.2s ease;
 }
 #search-button:hover {
-  background-color: hsl(248, 70%, 36%);
-  color: hsl(250, 6%, 84%);
+  background-color: var(--blue-700);
+  color: var(--neutral-200);
 }
 
 .search-bar {
@@ -208,11 +243,11 @@ main {
 }
 
 input {
-  background-color: hsl(243, 23%, 24%);
-  border: solid 1px hsl(243, 23%, 30%);
+  background-color: var(--neutral-700);
+  border: solid 1px var(--neutral-600);
   border-radius: 10px;
   padding: 15px;
-  color: hsl(250, 6%, 84%);
+  color: var(--neutral-200);
   margin-right: 10px;
   width: 600px;
 }
@@ -254,23 +289,23 @@ input::-webkit-search-cancel-button {
   position: absolute;
   top: 110%;
   right: 0;
-  background: hsl(243, 27%, 20%);
+  background: var(--neutral-800);
   padding: 15px;
-  border: 1px solid hsl(243, 23%, 24%);
+  border: 1px solid var(--neutral-700);
   border-radius: 10px;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .dropdown-content label {
-  color: hsl(240, 6%, 70%);
+  color: var(--neutral-300);
   font-size: 14px;
 }
 .dropdown-content select {
-  background-color: hsl(243, 23%, 24%);
-  border: solid 1px hsl(243, 23%, 30%);
+  background-color: var(--neutral-700);
+  border: solid 1px var(--neutral-600);
   border-radius: 10px;
   padding: 10px;
-  color: hsl(250, 6%, 84%);
+  color: var(--neutral-200);
   margin-block: 15px;
 }
 
@@ -283,12 +318,12 @@ input::-webkit-search-cancel-button {
 }
 
 .dropbtn {
-  background-color: hsl(243, 27%, 20%);
+  background-color: var(--neutral-800);
   border-radius: 10px;
-  border: 1px solid hsl(243, 23%, 24%);
+  border: 1px solid var(--neutral-700);
   padding: 10px;
   font-size: 18px;
-  color: hsl(250, 6%, 84%);
+  color: var(--neutral-200);
   display: flex;
   align-items: center;
 }
@@ -303,8 +338,8 @@ input::-webkit-search-cancel-button {
 }
 .unit-toggle-container .unit-btn {
   flex: 1;
-  background-color: hsl(243, 23%, 24%);
-  color: hsl(240, 6%, 70%);
+  background-color: var(--neutral-700);
+  color: var(--neutral-300);
   border: 1px solid transparent;
   padding: 10px;
   border-radius: 10px;
@@ -312,12 +347,12 @@ input::-webkit-search-cancel-button {
   transition: all 0.2s ease;
 }
 .unit-toggle-container .unit-btn.active {
-  border-color: hsl(250, 6%, 84%);
-  color: hsl(250, 6%, 84%);
+  border-color: var(--neutral-200);
+  color: var(--neutral-200);
   font-weight: bold;
 }
 .unit-toggle-container .unit-btn:hover:not(.active) {
-  background-color: hsl(243, 23%, 30%);
+  background-color: var(--neutral-600);
 }
 
 .not-found-api {
@@ -338,15 +373,15 @@ input::-webkit-search-cancel-button {
 .not-found-api h2 {
   font-weight: normal;
   font-size: 20px;
-  color: hsl(240, 6%, 70%);
+  color: var(--neutral-300);
 }
 .not-found-api button {
   margin-top: 20px;
   cursor: pointer;
-  background-color: hsl(243, 23%, 24%);
-  border: solid 1px hsl(243, 23%, 30%);
+  background-color: var(--neutral-700);
+  border: solid 1px var(--neutral-600);
   border-radius: 10px;
-  color: hsl(0, 0%, 100%);
+  color: var(--neutral-0);
   padding: 10px;
   display: flex;
   align-items: center;
@@ -356,13 +391,13 @@ input::-webkit-search-cancel-button {
   margin-right: 10px;
 }
 .not-found-api button:hover {
-  background-color: hsl(243, 23%, 30%);
+  background-color: var(--neutral-600);
 }
 
 .skeleton-card {
-  border: 1px solid hsl(243, 23%, 24%) !important;
+  border: 1px solid var(--neutral-700) !important;
   background: none !important;
-  background-color: hsl(243, 27%, 20%) !important;
+  background-color: var(--neutral-800) !important;
   justify-content: center !important;
   flex-direction: column !important;
 }

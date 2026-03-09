@@ -7,9 +7,9 @@
 }
 
 body {
-    background-color: $neutral-900;
+    background-color: var(--neutral-900);
     font-size: 16px;
-    color: $neutral-200;
+    color: var(--neutral-200);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 ::selection {
-    background-color: $neutral-900;
+    background-color: var(--neutral-900);
 }
 
 //Header styling
@@ -99,7 +99,7 @@ main {
     }
     p:nth-child(2) {
         font-size: 18px;
-        color: $neutral-300;
+        color: var(--neutral-300);
     }
 }
 
@@ -120,10 +120,10 @@ main {
 
 .weekly-card-name {
     border-radius: 10px;
-    background-color: $neutral-800;
+    background-color: var(--neutral-800);
     @include flex-center(column, space-evenly);
     padding: 20px;
-    border: 1px solid $neutral-700;
+    border: 1px solid var(--neutral-700);
     flex: 1 1 100px;
     min-height: 160px;     
     height: auto;
@@ -134,14 +134,14 @@ main {
     gap:10px;
 
     p:nth-child(2) {
-        color: $neutral-300;
+        color: var(--neutral-300);
     }
 }
 
 .hourly-wrapper {
     padding: 20px;
-    border: 1px solid $neutral-700;
-    background-color: $neutral-800;
+    border: 1px solid var(--neutral-700);
+    background-color: var(--neutral-800);
     border-radius: 10px;
 }
 
@@ -149,8 +149,8 @@ main {
     @include flex-center(row, space-between);
 
     border-radius: 10px;
-    border: 1px solid $neutral-600;
-    background-color: $neutral-700;
+    border: 1px solid var(--neutral-600);
+    background-color: var(--neutral-700);
     margin-block: 20px;
     padding: 15px;
     min-height: 80px;
@@ -166,8 +166,8 @@ main {
     flex-direction: column;
     gap: 10px;
     border-radius: 10px;
-    border: 1px solid $neutral-700;
-    background-color: $neutral-800;
+    border: 1px solid var(--neutral-700);
+    background-color: var(--neutral-800);
     padding: 20px;
     flex: 1 1 100px;
 
@@ -179,9 +179,9 @@ main {
 
 #search-button {
     cursor: pointer;
-    background-color: $blue-500;
+    background-color: var(--blue-500);
     border-radius: 10px;
-    color: $neutral-0;
+    color: var(--neutral-0);
     border: none;
     border-radius: 10px;
     padding: 15px;
@@ -189,8 +189,8 @@ main {
     transition: all 0.2s ease;
 
     &:hover {
-        background-color: $blue-700;
-        color: $neutral-200;
+        background-color: var(--blue-700);
+        color: var(--neutral-200);
     }
 }
 
@@ -205,11 +205,11 @@ main {
 }
 
 input {
-    background-color: $neutral-700;
-    border: solid 1px $neutral-600;
+    background-color: var(--neutral-700);
+    border: solid 1px var(--neutral-600);
     border-radius: 10px;
     padding: 15px;
-    color: $neutral-200;
+    color: var(--neutral-200);
     margin-right: 10px;
     width: 600px;
 
@@ -253,24 +253,24 @@ input {
   position: absolute;
   top: 110%;
   right: 0;
-  background: $neutral-800;
+  background: var(--neutral-800);
   padding: 15px;
-  border: 1px solid $neutral-700;
+  border: 1px solid var(--neutral-700);
   border-radius: 10px;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     label {
-        color: $neutral-300;
+        color: var(--neutral-300);
         font-size: 14px;
     }
 
     select {
-        background-color: $neutral-700;
-        border: solid 1px $neutral-600;
+        background-color: var(--neutral-700);
+        border: solid 1px var(--neutral-600);
         border-radius: 10px;
         padding: 10px;
-        color: $neutral-200;
+        color: var(--neutral-200);
         margin-block: 15px;
         
     }
@@ -285,12 +285,12 @@ input {
 }
 
 .dropbtn {
-    background-color: $neutral-800;
+    background-color: var(--neutral-800);
     border-radius: 10px;
-    border: 1px solid $neutral-700;
+    border: 1px solid var(--neutral-700);
     padding: 10px;
     font-size: 18px;
-    color: $neutral-200;
+    color: var(--neutral-200);
     display: flex;
     align-items: center;
 
@@ -306,8 +306,8 @@ input {
 
   .unit-btn {
     flex: 1;
-    background-color: $neutral-700; 
-    color: $neutral-300;
+    background-color: var(--neutral-700); 
+    color: var(--neutral-300);
     border: 1px solid transparent; 
     padding: 10px;
     border-radius: 10px;
@@ -315,13 +315,13 @@ input {
     transition: all 0.2s ease;
 
     &.active {
-      border-color: $neutral-200;
-      color: $neutral-200;
+      border-color: var(--neutral-200);
+      color: var(--neutral-200);
       font-weight: bold;
     }
 
     &:hover:not(.active) {
-      background-color: $neutral-600;
+      background-color: var(--neutral-600);
     }
   }
 }
@@ -346,16 +346,16 @@ input {
     h2 {
         font-weight: normal;
         font-size: 20px;
-        color: $neutral-300;
+        color: var(--neutral-300);
     }
 
     button {
         margin-top: 20px;
         cursor: pointer;
-        background-color: $neutral-700;
-        border: solid 1px $neutral-600;
+        background-color: var(--neutral-700);
+        border: solid 1px var(--neutral-600);
         border-radius: 10px;
-        color: $neutral-0;
+        color: var(--neutral-0);
         padding: 10px;
         display: flex;
         align-items: center;
@@ -366,7 +366,7 @@ input {
         }
 
         &:hover {
-            background-color: $neutral-600;
+            background-color: var(--neutral-600);
         }
     }
 }
@@ -374,9 +374,9 @@ input {
 // Skeleton styles
 
 .skeleton-card {
-    border: 1px solid $neutral-700 !important;
+    border: 1px solid var(--neutral-700) !important;
     background: none !important;
-    background-color: $neutral-800 !important;
+    background-color: var(--neutral-800) !important;
     justify-content: center !important;
     flex-direction: column !important;
 
